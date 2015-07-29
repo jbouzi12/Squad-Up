@@ -6,6 +6,7 @@ body {
 
 #legendbox {
     padding: 1.5em 0 0 1.5em;
+    width: 300px;
 }
 
 li.key {
@@ -14,5 +15,7 @@ li.key {
     font-size: .75em;
     width: 10%;
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 1.3em;
+    list-style-type: none;
+    display: inline;
 }

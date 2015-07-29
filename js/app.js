@@ -18,6 +18,6 @@
 	        var r = colors.invertExtent(d);
 	        // Format to percent 
 	        var formats = d3.format('%')
-	        return formats(r[0])+' - '+formats(r[1]) ;
+	        return formats(r[1])+'-'+formats(r[1]) ;
 	    });
 })();
