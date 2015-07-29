@@ -8,9 +8,12 @@ body {
 	font-weight: 300;
 }
 
+header, #map, #legendbox 	{
+	text-align: center;
+}
 #legendbox {
     padding: 1.5em;
-    width: 45%;
+    width: 100%;
 }
 
 .list-inline {
