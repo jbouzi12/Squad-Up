@@ -12,6 +12,6 @@ python -m SimpleHTTPServer 8000
 Once the server has started running, open up the project on http://localhost:8000. Alternatively, you can view 
 the project at my personal site:
 
-[View Here](www.jensenbouzi.com)
+[View Here](www.jensenbouzi.com/Squad-Up)
 
 
