@@ -1,7 +1,7 @@
 (function() {
 
 	var colors = d3.scale.quantize()
-		.range(colorbrewer.Blues[7]);
+		.range(colorbrewer.Reds[7]);
 
 	var legend = d3.select('#legendbox')
 	  .append('ul')
