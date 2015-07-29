@@ -30,3 +30,16 @@ li.key {
     list-style-type: none;
     display: inline;
 }
+
+#map {
+	position: relative;
+}
+.tooltip {
+	box-shadow: 0 0 5px #999999;
+	display: none;
+	z-index: 10;
+	background-color: white;
+	height: 75px;
+	width: 100px;
+	color: black;
+}
