@@ -24,6 +24,7 @@
 
 	// US Map
 
+	var mapColor = '#869EFF'
 	var width = 900;
 	var height = 540;
 
@@ -38,6 +39,18 @@
 
 	var g = svg.append('g');
 
+	// Labels for each State
+	var tooltip = d3.select('#map')
+		.append('div')
+		.attr('class', 'tooltip');
+	
+	tooltip.append('div')
+		.attr('class', 'label');
+
+	tooltip.append('div')
+		.attr('class', 'tweet_percent');
+
+
 	d3.json('json/us-states.json', function(err, topology) {
 		g.selectAll('path')
 			.data(topojson.feature(topology, topology.objects.usStates).features)
@@ -45,7 +58,19 @@
 			.append('path')
 			.attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
 			.attr('d', path)
-			.attr('fill', '#869EFF')
+			.attr('fill', mapColor);
+
+		g.selectAll('path').on('mouseover', function(d) {
+			console.log(d);
+			var stateName = d.properties.STATE_ABBR;
+
+			tooltip.select('.label').html(stateName);
+			tooltip.style('display', 'block');
+		});
+
+		g.selectAll('path').on('mouseout', function() {
+			tooltip.style('display','none')
+		})
 	})
 
 
