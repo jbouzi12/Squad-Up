@@ -38,7 +38,7 @@ li.key {
 	box-shadow: 0 0 5px #999999;
 	display: none;
 	z-index: 10;
-	background-color: white;
+	background-color: rgba(248, 248, 250, 0.7);
 	height: 75px;
 	width: 100px;
 	color: black;

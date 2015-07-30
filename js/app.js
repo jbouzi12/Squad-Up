@@ -19,7 +19,7 @@
 	        var r = colors.invertExtent(d);
 	        // Format to percent 
 	        var formats = d3.format('%')
-	        return formats(r[1])+'-'+formats(r[1]) ;
+	        return formats(r[0])+'-'+formats(r[1]) ;
 	    });
 
 	// US Map
@@ -58,19 +58,25 @@
 			.append('path')
 			.attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
 			.attr('d', path)
-			.attr('fill', mapColor);
+			.attr('fill', mapColor)
+			.on('mouseover', function(d) {
+				tooltip.select('.label').html(d.properties.name);
+				tooltip.style('display', 'block');
 
-		g.selectAll('path').on('mouseover', function(d) {
-			console.log(d);
-			var stateName = d.properties.STATE_ABBR;
+			})
+			.on('mouseout', function(d) {
+				tooltip.style('display', 'none')
+			});
 
-			tooltip.select('.label').html(stateName);
-			tooltip.style('display', 'block');
-		});
+		// g.selectAll('path').on('mouseover', function(d) {
+		// 	console.log(d);
+		// 	var stateName = d.properties.STATE_ABBR;
 
-		g.selectAll('path').on('mouseout', function() {
-			tooltip.style('display','none')
-		})
+		// });
+
+		// g.selectAll('path').on('mouseout', function() {
+		// 	tooltip.style('display','none')
+		// })
 	})
 
 
