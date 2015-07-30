@@ -51,6 +51,13 @@
 	tooltip.append('div')
 		.attr('class', 'label');
 
+	// tooltip.append('div')
+	// 	.attr('class', 'label');
+
+	// tooltip.append('div')
+	// 	.attr('class', 'label');
+
+
 	tooltip.append('div')
 		.attr('class', 'tweet_percent');
 
@@ -74,8 +81,8 @@
 			.on('mouseenter', function(d,i) {
 				var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
 				tooltip.classed('hidden', false)
-					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+(mouse[1]-30)+"px")
-          			.html(d.properties.name);
+					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+(mouse[1]-30)+"px");
+          		tooltip.selectAll('.label').html(d.properties.name);
 
 			})
 			.on('mouseout', function(d) {
