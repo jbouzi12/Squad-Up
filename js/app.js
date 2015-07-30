@@ -50,22 +50,33 @@
 	tooltip.append('div')
 		.attr('class', 'tweet_percent');
 
-
 	d3.json('json/us-states.json', function(err, topology) {
 		g.selectAll('path')
 			.data(topojson.feature(topology, topology.objects.usStates).features)
 			.enter()
 			.append('path')
-			.attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
-			.attr('d', path)
+			// .attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
+			.attr('d', path);
+			// .attr('fill', mapColor);
+
+		var states = topojson.feature(topology, topology.objects.usStates).features;
+		var state = g.selectAll('.state').data(states);
+
+		state.enter().insert('path')
+			.attr('class', 'state')
+			.attr('d',path)
 			.attr('fill', mapColor)
-			.on('mouseover', function(d) {
-				tooltip.select('.label').html(d.properties.name);
-				tooltip.style('display', 'block');
+
+			.on('mousein', function(d,i) {
+				var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
+				tooltip.classed('hidden', false)
+					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+mouse[1]+"px")
+          			.html(d.properties.name)
 
 			})
 			.on('mouseout', function(d) {
-				tooltip.style('display', 'none')
+				// tooltip.style('display', 'none')
+				tooltip.classed('hidden', true)
 			});
 
 		// g.selectAll('path').on('mouseover', function(d) {
