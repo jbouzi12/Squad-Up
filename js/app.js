@@ -24,7 +24,7 @@
 
 	// US Map
 
-	var mapColor = '#869EFF'
+	var mapColor = 'white';
 	var width = 900;
 	var height = 540;
 
@@ -42,7 +42,8 @@
 	// Labels for each State
 	var tooltip = d3.select('#map')
 		.append('div')
-		.attr('class', 'tooltip');
+		.attr('class', 'tooltip')
+		.classed('hidden', true);
 	
 	tooltip.append('div')
 		.attr('class', 'label');
@@ -57,7 +58,6 @@
 			.append('path')
 			// .attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
 			.attr('d', path);
-			// .attr('fill', mapColor);
 
 		var states = topojson.feature(topology, topology.objects.usStates).features;
 		var state = g.selectAll('.state').data(states);
@@ -67,27 +67,17 @@
 			.attr('d',path)
 			.attr('fill', mapColor)
 
-			.on('mousein', function(d,i) {
+			.on('mouseenter', function(d,i) {
 				var mouse = d3.mouse(svg.node()).map(function(d) {return parseInt(d);});
 				tooltip.classed('hidden', false)
-					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+mouse[1]+"px")
-          			.html(d.properties.name)
+					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+(mouse[1]-30)+"px")
+          			.html(d.properties.name);
 
 			})
 			.on('mouseout', function(d) {
-				// tooltip.style('display', 'none')
-				tooltip.classed('hidden', true)
+				tooltip.classed('hidden', true);
 			});
 
-		// g.selectAll('path').on('mouseover', function(d) {
-		// 	console.log(d);
-		// 	var stateName = d.properties.STATE_ABBR;
-
-		// });
-
-		// g.selectAll('path').on('mouseout', function() {
-		// 	tooltip.style('display','none')
-		// })
 	})
 
 
