@@ -1,8 +1,11 @@
 (function() {
 
+	var colorRange = colorbrewer.Reds[7]
+	
 	var colors = d3.scale.quantize()
-		.range(colorbrewer.Reds[7]);
+		.range(colorRange);
 
+	console.log(colors.range())
 	// Map Legend
 	var legend = d3.select('#legendbox')
 	  .append('ul')
@@ -39,7 +42,7 @@
 
 	var g = svg.append('g');
 
-	// Labels for each State
+	// Tooltip for each State
 	var tooltip = d3.select('#map')
 		.append('div')
 		.attr('class', 'tooltip')
@@ -51,17 +54,18 @@
 	tooltip.append('div')
 		.attr('class', 'tweet_percent');
 
+	// Draw map from json data
 	d3.json('json/us-states.json', function(err, topology) {
 		g.selectAll('path')
 			.data(topojson.feature(topology, topology.objects.usStates).features)
 			.enter()
 			.append('path')
-			// .attr('class', function(d) {return 'states' + d.properties.STATE_ABBR;})
 			.attr('d', path);
 
 		var states = topojson.feature(topology, topology.objects.usStates).features;
 		var state = g.selectAll('.state').data(states);
 
+		// Display tooltip with stats on hover
 		state.enter().insert('path')
 			.attr('class', function(d) {return 'state ' + d.properties.STATE_ABBR;})
 			.attr('d',path)
