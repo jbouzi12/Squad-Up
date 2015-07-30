@@ -51,12 +51,11 @@
 	tooltip.append('div')
 		.attr('class', 'label');
 
-	// tooltip.append('div')
-	// 	.attr('class', 'label');
+	tooltip.append('div')
+		.attr('class', 'tweet_total');
 
-	// tooltip.append('div')
-	// 	.attr('class', 'label');
-
+	tooltip.append('div')
+		.attr('class', 'tweet_actual');
 
 	tooltip.append('div')
 		.attr('class', 'tweet_percent');
@@ -83,6 +82,8 @@
 				tooltip.classed('hidden', false)
 					.attr("style", "left:"+(mouse[0]+105)+"px;top:"+(mouse[1]-30)+"px");
           		tooltip.selectAll('.label').html(d.properties.name);
+
+          		// Add tweet statistics here...
 
 			})
 			.on('mouseout', function(d) {
