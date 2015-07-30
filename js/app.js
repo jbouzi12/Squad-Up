@@ -63,7 +63,7 @@
 		var state = g.selectAll('.state').data(states);
 
 		state.enter().insert('path')
-			.attr('class', 'state')
+			.attr('class', function(d) {return 'state ' + d.properties.STATE_ABBR;})
 			.attr('d',path)
 			.attr('fill', mapColor)
 
